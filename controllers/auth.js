@@ -60,7 +60,6 @@ const join = async (req,res) => {
 };
 
 const login = async (req, res) => {
-  res.header('Access-Control-Allow-Origin');
   const { email, password } = req.body;
 
   if (!email || !password) {
@@ -143,7 +142,7 @@ const logout = async (req, res) => {
   }
 };
 
-const changePassword = async (req, res) => {
+const password = async (req, res) => {
     const { newpassword1, newpassword2 } = req.body;
 
     if ( !newpassword1 || !newpassword2) {
@@ -217,6 +216,6 @@ module.exports = {
   join,
   login,
   logout,
-  changePassword,
+  password,
   cancelAccount,
 };

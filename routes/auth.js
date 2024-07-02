@@ -1,6 +1,6 @@
 const express = require('express');
 const ensureAuthorization = require('../auth');
-const { join, login, logout, changePassword, cancelAccount } = require('../controllers/auth');
+const { join, login, logout, password, cancelAccount } = require('../controllers/auth');
 
 const router = express.Router();
 
@@ -9,6 +9,6 @@ router.use(express.json());
 router.post('/join', join);
 router.post('/login', login);
 router.post('/logout', ensureAuthorization, logout);
-router.post('/changePassword',ensureAuthorization, changePassword);
+router.patch('/password',ensureAuthorization, password);
 router.delete('/cancelAccount', ensureAuthorization, cancelAccount);
 module.exports = router;
