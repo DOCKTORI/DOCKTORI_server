@@ -9,6 +9,6 @@ router.use(express.json());
 router.post('/join', join);
 router.post('/login', login);
 router.post('/logout', ensureAuthorization, logout);
-router.post('/changePassword', changePassword);
+router.post('/changePassword',ensureAuthorization, changePassword);
 router.delete('/cancelAccount', ensureAuthorization, cancelAccount);
 module.exports = router;
