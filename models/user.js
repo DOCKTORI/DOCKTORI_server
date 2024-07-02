@@ -37,10 +37,6 @@ const BookReferenceSchema = new mongoose.Schema({
     type: Date,
     default: null
   },
-  rating: {
-    type: Number,
-    default: null
-  },
   remind: {
     type: [String],
     default: []

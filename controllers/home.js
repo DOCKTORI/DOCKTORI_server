@@ -74,7 +74,7 @@ const favorites = async (req, res) => {
         }));
 
         return res.status(StatusCodes.OK).json({
-            favoritesBooks: favoritesBooks
+            books: favoritesBooks
         });
 
     } catch (err) {
@@ -106,7 +106,7 @@ const readingBooks = async (req, res) => {
         }));
 
         return res.status(StatusCodes.OK).json({
-            bookReading: bookReading
+            books: bookReading
         });
 
     } catch(error) {
@@ -138,7 +138,7 @@ const finishedBooks = async (req, res) => {
         }));
 
         return res.status(StatusCodes.OK).json({
-            bookFinished: bookFinished
+            books: bookFinished
         });
 
     } catch(error) {

@@ -12,11 +12,17 @@ const generateRefreshToken = (userId) => {
 }
 
 const join = async (req,res) => {
-    const { email, password, nickname } = req.body;
-    if (!email || !nickname || !password ) { 
+    const { email, password1, password2, nickname } = req.body;
+    if (!email || !nickname || !password1 || !password2) { 
         return res.status(StatusCodes.BAD_REQUEST).json({
             message: "공백이 있습니다."
         })};
+
+    if (password1 !== password2) {
+        return res.status(StatusCodes.BAD_REQUEST).json({ 
+            message: "비밀번호가 일치하지 않습니다." 
+        });
+    }
     
     try {
         // 이메일 중복 확인
@@ -133,9 +139,9 @@ const logout = async (req,res) => {
 }
 
 const changePassword = async (req, res) => {
-    const { email, password, newpassword1, newpassword2 } = req.body;
+    const { newpassword1, newpassword2 } = req.body;
 
-    if (!email || !password || !newpassword1 || !newpassword2) {
+    if ( !newpassword1 || !newpassword2) {
         return res.status(StatusCodes.BAD_REQUEST).json({
             message: "공백이 있습니다."
         });
@@ -148,20 +154,11 @@ const changePassword = async (req, res) => {
     }
 
     try {
-        // 이메일로 사용자 찾기
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ _id: req.user.id })
 
         if (!user) {
             return res.status(StatusCodes.NOT_FOUND).json({ 
                 message: "사용자를 찾을 수 없습니다." 
-            });
-        }
-
-        // 현재 비밀번호 확인
-        const hashPassword = crypto.pbkdf2Sync(password, user.salt, 10000, 64, 'sha512').toString('base64');  // 해시 길이 조정
-        if (hashPassword !== user.password) {
-            return res.status(StatusCodes.UNAUTHORIZED).json({ 
-                message: "현재 비밀번호가 일치하지 않습니다."
             });
         }
 
