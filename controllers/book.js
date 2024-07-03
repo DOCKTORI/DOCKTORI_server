@@ -26,6 +26,7 @@ const addDeletelike = async (req, res) => {
 
 const searchBooks = async (req, res) => {
     const { title } = decodeURIComponent(req.query);
+    console.log(title);
     const url = `http://www.aladin.co.kr/ttb/api/ItemSearch.aspx?ttbkey=${process.env.ALADIN_TTBKEY}&Query=${title}&QueryType=Title&MaxResults=20&Sort=Accuracy&start=1&SearchTarget=Book&output=js&Version=20131101`;
 
     try {
