@@ -25,7 +25,7 @@ const addDeletelike = async (req, res) => {
 }
 
 const searchBooks = async (req, res) => {
-    const { title } = req.body;
+    const { title } = req.query;
     const url = `http://www.aladin.co.kr/ttb/api/ItemSearch.aspx?ttbkey=${process.env.ALADIN_TTBKEY}&Query=${title}&QueryType=Title&MaxResults=20&Sort=Accuracy&start=1&SearchTarget=Book&output=js&Version=20131101`;
 
     try {
@@ -110,7 +110,7 @@ const finishReading = async (req, res) => {
 
 const bookDetail = async (req, res) => {
     try {
-        const { isbn } = req.body;
+        const { isbn } = req.query;
         const { user, book } = await findUserAndBook(req.user.id, isbn);
 
         const startDate = book.startDate ? book.startDate.toISOString().split('T')[0] : null;

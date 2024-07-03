@@ -178,7 +178,7 @@ const changeGoal = async (req, res) => {
 
 const calender = async (req, res) => {
     try {
-        const { year, month } = req.body;
+        const { year, month } = req.query;
         const user = await User.findOne({ _id: req.user.id });
         if (!user) {
             return res.status(StatusCodes.BAD_REQUEST).json({

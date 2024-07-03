@@ -22,7 +22,7 @@ router.post('/like', addDeletelike);
 router.get('/search', searchBooks);
 router.put('/select', selectBook);
 router.post('/finishReading', finishReading); 
-router.get('/Detail', bookDetail);
+router.get('/detail', bookDetail);
 router.post('/changeDate', changeDate);
 router.put('/remind', remind);
 router.delete('/deleteRemind', deleteRemind);
