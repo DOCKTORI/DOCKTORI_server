@@ -38,6 +38,7 @@ const main = async (req, res) => {
 
 
         return res.status(StatusCodes.OK).json({
+            userNickname: user.nickname,
             userGoal: user.goal !== null ? user.goal : '',
             bookReadingCount: bookReading.length,
             bookFinishedCount: bookFinished.length,
