@@ -160,6 +160,13 @@ const changeDate = async (req, res) => {
 
         book.startDate = sDate? new Date(sDate) : null;
         book.endDate = eDate? new Date(eDate) : null;
+
+        if( book.endDate === null ) {
+            book.readStatus = false;
+        } else {
+            book.readStatus = true;
+        }
+
         await user.save();
 
         return res.status(StatusCodes.OK).json({
