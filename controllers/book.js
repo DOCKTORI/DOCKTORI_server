@@ -170,6 +170,7 @@ const changeDate = async (req, res) => {
         await user.save();
 
         return res.status(StatusCodes.OK).json({
+            bookStatus: book.readStatus,
             bookStartDate: book.startDate.toISOString().split('T')[0],
             bookEndDate: book.endDate.toISOString().split('T')[0]
         });
