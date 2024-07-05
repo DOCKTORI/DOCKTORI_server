@@ -38,7 +38,7 @@ const join = async (req,res) => {
         }
 
         const salt = crypto.randomBytes(16).toString('base64');
-        const hashPassword = crypto.pbkdf2Sync(password, salt, 10000, 64, 'sha512').toString('base64');
+        const hashPassword = crypto.pbkdf2Sync(password1, salt, 10000, 64, 'sha512').toString('base64');
 
         const newUser = new User({
             email,
