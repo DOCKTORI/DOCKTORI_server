@@ -161,7 +161,7 @@ const changeDate = async (req, res) => {
         book.startDate = sDate? new Date(sDate) : null;
         book.endDate = eDate? new Date(eDate) : null;
 
-        if( book.endDate === null ) {
+        if (book.endDate === null) {
             book.readStatus = false;
         } else {
             book.readStatus = true;
@@ -171,8 +171,8 @@ const changeDate = async (req, res) => {
 
         return res.status(StatusCodes.OK).json({
             bookStatus: book.readStatus,
-            bookStartDate: book.startDate.toISOString().split('T')[0],
-            bookEndDate: book.endDate.toISOString().split('T')[0]
+            bookStartDate: book.startDate,
+            bookEndDate: book.endDate
         });
 
     } catch (error) {
