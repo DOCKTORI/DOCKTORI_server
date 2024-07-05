@@ -39,12 +39,33 @@ const main = async (req, res) => {
 
         return res.status(StatusCodes.OK).json({
             userNickname: user.nickname,
-            userGoal: user.goal !== null ? user.goal : '',
+            
             bookReadingCount: bookReading.length,
             bookFinishedCount: bookFinished.length,
             bookReading: bookReading,
             bookFinished: bookFinished,
         });
+
+    } catch (err) {
+        console.error(err);
+        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+            message: "서버 오류"
+        })
+    }
+}
+
+const goal = async (req, res) => {
+    try {
+        const user = await User.findOne({ _id: req.user.id });
+        if (!user) {
+            return res.status(StatusCodes.BAD_REQUEST).json({
+                message: "유효하지 않은 토큰입니다."
+            });
+        }
+
+        return res.status(StatusCodes.OK).json({
+            userGoal: user.goal !== null ? user.goal : '',
+        })
 
     } catch (err) {
         console.error(err);
@@ -107,6 +128,7 @@ const readingBooks = async (req, res) => {
         }));
 
         return res.status(StatusCodes.OK).json({
+            count: bookReading.length,
             books: bookReading
         });
 
@@ -139,6 +161,7 @@ const finishedBooks = async (req, res) => {
         }));
 
         return res.status(StatusCodes.OK).json({
+            count: bookFinished.length,
             books: bookFinished
         });
 
@@ -222,6 +245,7 @@ const calender = async (req, res) => {
 
 module.exports = {
     main,
+    goal,
     favorites,
     readingBooks,
     finishedBooks,
