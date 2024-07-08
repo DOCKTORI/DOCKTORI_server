@@ -1,6 +1,6 @@
 const express = require('express');
 const ensureAuthorization = require('../auth');
-const { main, goal, favorites, readingBooks, finishedBooks, changeGoal, calender } = require('../controllers/home');
+const { main, goal, favorites, readingBooks, finishedBooks, changeGoal, calender, nickname } = require('../controllers/home');
 
 const router = express.Router();
 
@@ -14,5 +14,6 @@ router.get('/readingBooks', readingBooks);
 router.get('/finishedBooks', finishedBooks);
 router.post('/changeGoal', changeGoal);
 router.get('/calender', calender);
+router.get('/nickname', nickname);
 
 module.exports = router;

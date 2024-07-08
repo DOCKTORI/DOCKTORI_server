@@ -242,6 +242,19 @@ const calender = async (req, res) => {
     }
 }
 
+const nickname = async (req, res) => {
+    const user = await User.findOne({ _id: req.user.id });
+    if (!user) {
+        return res.status(StatusCodes.BAD_REQUEST).json({
+            message: "유효하지 않은 토큰입니다."
+        });
+    }
+
+    return res.status(StatusCodes.OK).json({
+        userNickname: user.nickname
+    })
+}
+
 
 module.exports = {
     main,
@@ -250,5 +263,6 @@ module.exports = {
     readingBooks,
     finishedBooks,
     changeGoal,
-    calender
+    calender,
+    nickname
 }
