@@ -90,7 +90,7 @@ const login = async (req, res) => {
     user.refreshToken = refreshToken;
     await user.save();
 
-    res.cookie('refreshToken', refreshToken, { httpOnly: true, secure: true, sameSite: 'strict' });
+    res.cookie('refreshToken', refreshToken, { httpOnly: true, secure: false });
 
     return res.status(StatusCodes.OK).json({
       nickname: user.nickname,
