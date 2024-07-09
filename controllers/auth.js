@@ -90,7 +90,7 @@ const login = async (req, res) => {
     user.refreshToken = refreshToken;
     await user.save();
 
-    res.cookie('refreshToken', refreshToken, { httpOnly: true, secure: true });
+    res.cookie('refreshToken', refreshToken, { httpOnly: true, secure: true, sameSite: 'strict' });
 
     return res.status(StatusCodes.OK).json({
       nickname: user.nickname,
@@ -106,14 +106,12 @@ const login = async (req, res) => {
 
 const logout = async (req, res) => {
   const { refreshToken } = req.cookies;
-  console.log("1");
 
   if (!refreshToken) {
     return res.status(StatusCodes.UNAUTHORIZED).json({
       message: 'RefreshToken이 없습니다.',
     });
   }
-  console.log("2");
 
   try {
     const decoded = jwt.verify(refreshToken, process.env.JWT_SECRET);
@@ -124,22 +122,18 @@ const logout = async (req, res) => {
         message: '유효하지 않은 RefreshToken입니다.',
       });
     }
-    console.log("3");
 
     // 리프레시 토큰 무효화
     user.refreshToken = null;
     await user.save();
-    console.log("4");
 
     // 클라이언트 측 쿠키 삭제 지시
     res.clearCookie('refreshToken');
     // + 로컬에 저장되어있는 Access Token도 제거바람 ( 프론트 )
-    console.log("5");
 
     return res.status(StatusCodes.OK).json({
       message: '로그아웃 성공',
     });
-    console.log("6");
   } catch (err) {
     console.log(err);
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
