@@ -106,6 +106,8 @@ const login = async (req, res) => {
 
 const logout = async (req, res) => {
   const { refreshToken } = req.cookies;
+  console.log("여기들어오냐?");
+  console.log(refreshToken);
 
   if (!refreshToken) {
     return res.status(StatusCodes.UNAUTHORIZED).json({
