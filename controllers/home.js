@@ -33,7 +33,8 @@ const main = async (req, res) => {
             image: book.image,
             likeStatus: book.likeStatus,
             readStatus: book.readStatus,
-            isbn: book.isbn
+            isbn: book.isbn,
+            score: book.score
         }));
 
 
@@ -92,7 +93,8 @@ const favorites = async (req, res) => {
             image: book.image,
             likeStatus: book.likeStatus,
             readStatus: book.readStatus,
-            isbn: book.isbn
+            isbn: book.isbn,
+            score: book.score
         }));
 
         return res.status(StatusCodes.OK).json({
@@ -157,7 +159,8 @@ const finishedBooks = async (req, res) => {
             image: book.image,
             likeStatus: book.likeStatus,
             readStatus: book.readStatus,
-            isbn: book.isbn
+            isbn: book.isbn,
+            score: book.number
         }));
 
         return res.status(StatusCodes.OK).json({
