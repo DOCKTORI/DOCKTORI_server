@@ -230,6 +230,7 @@ const calender = async (req, res) => {
             console.log(endDate && endDate.getFullYear() === year && endDate.getMonth() + 1 === month)
             console.log("======================================");
             console.log(typeof startDate.getFullYear());
+            console.log(typeof year);
 
             return (
                 (startDate.getFullYear() === year && startDate.getMonth() + 1 === month ) ||
