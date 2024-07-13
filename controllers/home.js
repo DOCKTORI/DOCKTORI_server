@@ -220,12 +220,14 @@ const calender = async (req, res) => {
             console.log("startDate ",startDate);
             console.log("endDate ",endDate);
             console.log("year ",year);
-            console.log("month - 1 ",month - 1);
+            console.log("month ",month );
             console.log("startDate.getFullYear() ",startDate.getFullYear());
             console.log("startDate.getMonth() ",startDate.getMonth());
             console.log("endDate ",endDate);
             console.log("endDate.getFullYear() ",endDate.getFullYear());
             console.log("endDate.getMonth() ",endDate.getMonth());
+            console.log(startDate.getFullYear() === year && startDate.getMonth() + 1 === month)
+            console.log(endDate && endDate.getFullYear() === year && endDate.getMonth() + 1 === month)
             return (
                 (startDate.getFullYear() === year && startDate.getMonth() + 1 === month ) ||
                 (endDate && endDate.getFullYear() === year && endDate.getMonth() + 1 === month )
