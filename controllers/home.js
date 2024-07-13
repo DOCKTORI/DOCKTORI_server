@@ -227,8 +227,8 @@ const calender = async (req, res) => {
             console.log("endDate.getFullYear() ",endDate.getFullYear());
             console.log("endDate.getMonth() ",endDate.getMonth());
             return (
-                (startDate.getFullYear() === year && startDate.getMonth() === month - 1) ||
-                (endDate && endDate.getFullYear() === year && endDate.getMonth() === month - 1)
+                (startDate.getFullYear() === year && startDate.getMonth() + 1 === month ) ||
+                (endDate && endDate.getFullYear() === year && endDate.getMonth() + 1 === month )
             );
         });
 
