@@ -217,11 +217,22 @@ const calender = async (req, res) => {
             if (!book.readStatus) return false;
             const startDate = new Date(book.startDate);
             const endDate = book.endDate ? new Date(book.endDate) : null;
+            console.log("startDate ",startDate);
+            console.log("endDate ",endDate);
+            console.log("year ",year);
+            console.log("month - 1 ",month - 1);
+            console.log("startDate.getFullYear() ",startDate.getFullYear());
+            console.log("startDate.getMonth() ",startDate.getMonth());
+            console.log("endDate ",endDate);
+            console.log("endDate.getFullYear() ",endDate.getFullYear());
+            console.log("endDate.getMonth() ",endDate.getMonth());
             return (
                 (startDate.getFullYear() === year && startDate.getMonth() === month - 1) ||
                 (endDate && endDate.getFullYear() === year && endDate.getMonth() === month - 1)
             );
         });
+
+        console.log(readBooks);
 
         const bookReading = user.books.filter(book => book.readStatus === false)
         const bookFinished = user.books.filter(book => book.readStatus === true)
