@@ -205,7 +205,8 @@ const changeGoal = async (req, res) => {
 
 const calender = async (req, res) => {
     try {
-        const { year, month } = req.query;
+        const year = parseInt(req.query.year, 10);
+        const month = parseInt(req.query.month, 10);
         const user = await User.findOne({ _id: req.user.id });
         if (!user) {
             return res.status(StatusCodes.BAD_REQUEST).json({
@@ -217,28 +218,12 @@ const calender = async (req, res) => {
             if (!book.readStatus) return false;
             const startDate = new Date(book.startDate);
             const endDate = book.endDate ? new Date(book.endDate) : null;
-            console.log("startDate ",startDate);
-            console.log("endDate ",endDate);
-            console.log("year ",year);
-            console.log("month ",month );
-            console.log("startDate.getFullYear() ",startDate.getFullYear());
-            console.log("startDate.getMonth() ",startDate.getMonth());
-            console.log("endDate ",endDate);
-            console.log("endDate.getFullYear() ",endDate.getFullYear());
-            console.log("endDate.getMonth() ",endDate.getMonth());
-            console.log(startDate.getFullYear() === year && startDate.getMonth() + 1 === month)
-            console.log(endDate && endDate.getFullYear() === year && endDate.getMonth() + 1 === month)
-            console.log("======================================");
-            console.log(typeof startDate.getFullYear());
-            console.log(typeof year);
 
             return (
                 (startDate.getFullYear() === year && startDate.getMonth() + 1 === month ) ||
                 (endDate && endDate.getFullYear() === year && endDate.getMonth() + 1 === month )
             );
         });
-
-        console.log(readBooks);
 
         const bookReading = user.books.filter(book => book.readStatus === false)
         const bookFinished = user.books.filter(book => book.readStatus === true)
