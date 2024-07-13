@@ -228,6 +228,9 @@ const calender = async (req, res) => {
             console.log("endDate.getMonth() ",endDate.getMonth());
             console.log(startDate.getFullYear() === year && startDate.getMonth() + 1 === month)
             console.log(endDate && endDate.getFullYear() === year && endDate.getMonth() + 1 === month)
+            console.log("======================================");
+            console.log(typeof startDate.getFullYear());
+
             return (
                 (startDate.getFullYear() === year && startDate.getMonth() + 1 === month ) ||
                 (endDate && endDate.getFullYear() === year && endDate.getMonth() + 1 === month )
