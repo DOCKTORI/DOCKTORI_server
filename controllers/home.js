@@ -160,7 +160,7 @@ const finishedBooks = async (req, res) => {
             likeStatus: book.likeStatus,
             readStatus: book.readStatus,
             isbn: book.isbn,
-            score: book.number
+            score: book.score
         }));
 
         return res.status(StatusCodes.OK).json({
