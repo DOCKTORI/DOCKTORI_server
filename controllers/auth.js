@@ -149,7 +149,12 @@ const password = async (req, res) => {
         return res.status(StatusCodes.BAD_REQUEST).json({
             message: "공백이 있습니다."
         });
+    }
 
+    if ( newpassword1 !== newpassword2 ) {
+       return res.status(StatusCodes.BAD_REQUEST).json({ 
+           message: "비밀번호가 일치하지 않습니다." 
+       });
     }
 
     try {
